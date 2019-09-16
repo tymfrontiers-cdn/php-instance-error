@@ -31,14 +31,14 @@ class InstanceError{
       }
     }
   }
-  public function get(string $reference='',bool $err_text=false){
+  public function get(string $reference='', bool $err_text=false){
     global $session;
-    $rank = ( $session instanceof Session ) ? $session->admin_rank : 0;
+    $rank = ( $session instanceof Session ) ? $session->access_rank : 0;
     $return = [];
     if( !empty($reference) ){
       if( \array_key_exists($reference,$this->_errors) ){
 
-        foreach($this->_errors[$reference] as $err){
+        foreach ($this->_errors[$reference] as $err) {
           if( \is_bool($this->_override) && !(bool)$this->_override ){
             if( $rank >= $err[0] ) $return[] = $err_text ? $err[2] : $err;
           }elseif( \is_bool($this->_override) && (bool)$this->_override ){
