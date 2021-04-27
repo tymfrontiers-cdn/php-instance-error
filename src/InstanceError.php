@@ -33,7 +33,7 @@ class InstanceError{
   }
   public function get(string $reference='', bool $err_text=false){
     global $session;
-    $rank = ( $session instanceof Session ) ? $session->access_rank : 0;
+    $rank = ( $session instanceof Session ) ? $session->access_rank() : 0;
     $return = [];
     if( !empty($reference) ){
       if( \array_key_exists($reference,$this->_errors) ){
